@@ -33,16 +33,16 @@ const sketch4 = (p) => {
     "{name} ơi, vạn sự như ý\nGame thắng liên tục luôn nha 🎮",
     "6/4 này {name}\nđẹp trai vượt mức cho phép 😏",
     "6/4 vui nhé {name}\nLuôn mạnh mẽ và thành công 💪",
-    "Chúc {name}\nLuôn là cây hài của CLB 😂",
+    "Chúc {name} có đủ 3 ngoại 😂",
     "6/4 của {name}\nPhong độ ngời ngời như idol 🌟",
     "Chúc {name}\nLuôn vui vẻ và tràn đầy năng lượng ⚡",
     "6/4 này {name}\nĐược mọi người khen đẹp trai hoài 😆",
     "{name} ơi\nChúc hôm nay may mắn ngập tràn 🍀",
     "6/4 chúc {name}\nHọc giỏi – chơi giỏi – ngủ cũng giỏi 😴",
-    "Chúc {name}\nLuôn là chiến thần của CLB 🔥",
+    "Mãi vui vẻ mãi keo",
     "6/4 của {name}\nCười nhiều hơn học bài một chút 😁",
     "{name} ơi\nChúc bạn luôn vui và thật phong độ 😎",
-    "6/4 này {name}\nMãi là chàng trai năng lượng nhất CLB "
+    "6/4 này {name}\nMãi là chàng trai năng lượng nhất Nhà "
   ];
 
   function buildWishMessage() {
@@ -152,7 +152,7 @@ const sketch4 = (p) => {
         const lineHeight = titleSize * scale * 1.2;
         p.fill(255, titleAlpha);
         p.textSize(titleSize * scale);
-        p.text("CLB QGPro xin chúc", 0, -lineHeight);
+        p.text("QGPro xin chúc", 0, -lineHeight);
         p.fill(0, 191, 255, titleAlpha); // Xanh sáng cho tên
         p.textSize(titleSize * 1.28 * scale);
         p.text(currentReceiverName, 0, 0);
@@ -162,7 +162,7 @@ const sketch4 = (p) => {
       } else {
         p.fill(255, titleAlpha);
         p.textSize(titleSize * scale);
-        p.text("CLB QGPro xin chúc\ncác bạn QGPro ngày 6/4 tuyệt vời", 0, 0);
+        p.text("QGPro xin chúc\ncác bạn QGPro ngày 6/4 tuyệt vời", 0, 0);
       }
       p.pop();
     }

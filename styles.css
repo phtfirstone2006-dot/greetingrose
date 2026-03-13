@@ -1,0 +1,296 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.snap-container {
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.section {
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
+  position: relative;
+  overflow: hidden;
+}
+
+#section4 {
+  background-color: #FFFFFF;
+}
+
+canvas {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: 0 !important;
+}
+
+#depth-wrapper {
+  position: fixed;
+  top: 150px;
+  right: 56px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  #depth-wrapper {
+    display: none;
+  }
+}
+
+.depth-label {
+  transform-origin: center right;
+  transform: rotate(-90deg);
+  color: white;
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+.viewfinder-corners::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background:
+    linear-gradient(to right, #ffffff 50px, transparent 50px) top 50px left 50px,
+    linear-gradient(to bottom, #ffffff 50px, transparent 50px) top 50px left 50px,
+    linear-gradient(to left, #ffffff 50px, transparent 50px) top 50px right 50px,
+    linear-gradient(to bottom, #ffffff 50px, transparent 50px) top 50px right 50px,
+    linear-gradient(to right, #ffffff 50px, transparent 50px) bottom 50px left 50px,
+    linear-gradient(to top, #ffffff 50px, transparent 50px) bottom 50px left 50px,
+    linear-gradient(to left, #ffffff 50px, transparent 50px) bottom 50px right 50px,
+    linear-gradient(to top, #ffffff 50px, transparent 50px) bottom 50px right 50px;
+  background-repeat: no-repeat;
+  background-size: 50px 2px, 2px 50px;
+}
+
+@media (max-width: 768px) {
+  .viewfinder-corners::before {
+    display: none;
+  }
+}
+
+.dot-nav {
+  position: fixed;
+  left: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+  z-index: 10000;
+}
+
+@media (max-width: 768px) {
+  .dot-nav {
+    left: 20px;
+    gap: 20px;
+  }
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background-color: transparent;
+  border: 2px solid white;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .dot {
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid white;
+  }
+}
+
+.dot.active {
+  background-color: white;
+  opacity: 1;
+}
+
+.tooltip {
+  position: fixed;
+  background-color: rgba(0, 38, 95, 0.15);
+  color: white;
+  padding: 6px 25px;
+  border-radius: 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10001;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@media (max-width: 768px) {
+  .tooltip {
+    display: none;
+  }
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
+
+.image-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 40px 20px;
+}
+
+.lcxceo-image {
+  max-width: 100%;
+  max-height: 80vh;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 30, 60, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(255, 200, 230, 0.1) 0%, rgba(100, 150, 255, 0.1) 100%);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  border: 2px solid rgba(255, 200, 230, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: fadeInScale 0.5s ease-out;
+}
+
+.modal-content h2 {
+  color: white;
+  font-family: 'Dancing Script', cursive;
+  font-size: 32px;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+#nameInput {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 18px;
+  border: 2px solid rgba(255, 200, 230, 0.5);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+#nameInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#nameInput:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 200, 230, 1);
+  box-shadow: 0 0 20px rgba(255, 200, 230, 0.3);
+}
+
+#nameSubmit {
+  width: 100%;
+  padding: 14px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgb(153, 0, 0), rgb(153, 0, 0));
+  color: white;
+  font-family: 'Dancing Script', cursive;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#nameSubmit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(239, 43, 79, 0.4);
+}
+
+#nameSubmit:active {
+  transform: translateY(0);
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 30px 20px;
+  }
+
+  .modal-content h2 {
+    font-size: 24px;
+  }
+
+  #nameInput,
+  #nameSubmit {
+    font-size: 16px;
+  }
+}
+

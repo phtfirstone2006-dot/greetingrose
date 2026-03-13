@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="viewfinder-corners">
+    <div class="tooltip" id="tooltip"></div>
+
+    <!-- Name Input Modal -->
+    <div id="nameModal" class="modal-overlay">
+      <div class="modal-content">
+        <h2>Xin gửi lời chúc đến</h2>
+        <input
+          type="text"
+          id="nameInput"
+          placeholder="Nhập tên ở đây..."
+          maxlength="50"
+        />
+        <button id="nameSubmit">Chúc mừng 6/4</button>
+      </div>
+    </div>
+
+    <main class="snap-container">
+      <div id="section4" class="section"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+
+    <script src="sketch4.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
